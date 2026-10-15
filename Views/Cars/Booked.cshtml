@@ -1,0 +1,39 @@
+@model List<CarRental.Models.Car>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+	<h1>Booked Cars</h1>
+	<div>
+		<a class="btn btn-secondary" href="/Cars">Back to Cars</a>
+	</div>
+</div>
+
+@if (Model != null && Model.Any())
+{
+	<div class="table-responsive">
+		<table class="table table-striped table-hover">
+			<thead class="table-dark">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Car Name</th>
+					<th scope="col">Price Per Day</th>
+					<th scope="col">Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var car in Model)
+				{
+					<tr>
+						<td>@car.Id</td>
+						<td>@car.Name</td>
+						<td>PKR @String.Format("{0:N0}", car.PricePerDay)</td>
+						<td><span class="badge bg-warning text-dark">Booked</span></td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+}
+else
+{
+	<div class="alert alert-info">No cars have been booked yet.</div>
+}
